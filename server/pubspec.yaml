@@ -21,6 +21,7 @@ dependencies:
     git:
       url: https://github.com/Meruya-Techhnology/Beyond.git
       path: beyond
+      ref: 0300eb7c4f5f0258b1be0f507ac6c59cf3f67907
   dio: ^4.0.6
   shared:
     path: ../shared
