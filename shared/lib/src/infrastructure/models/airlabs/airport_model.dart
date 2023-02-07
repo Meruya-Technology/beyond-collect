@@ -17,9 +17,10 @@ class AirportModel {
   final String? timezone;
   final String countryCode;
   final dynamic names;
+  final int? runways;
   final int? departures;
   final bool? isMajor;
-  final bool? isInternational;
+  final int? isInternational;
   final String? website;
   final String? facebook;
   final String? twitter;
@@ -40,6 +41,7 @@ class AirportModel {
     this.timezone,
     required this.countryCode,
     this.names,
+    this.runways,
     this.departures,
     this.isMajor,
     this.isInternational,
@@ -64,6 +66,7 @@ class AirportModel {
         timezone: json['timezone'],
         countryCode: json['country_code'],
         names: json['names'],
+        runways: json['runways'],
         departures: json['departures'],
         isMajor: json['is_major'],
         isInternational: json['is_international'],
@@ -89,6 +92,7 @@ class AirportModel {
     json['timezone'] = timezone;
     json['country_code'] = countryCode;
     json['names'] = names;
+    json['runways'] = runways;
     json['departures'] = departures;
     json['is_major'] = isMajor;
     json['is_international'] = isInternational;
