@@ -1,3 +1,9 @@
+import 'package:beyond/beyond.dart';
+
+/// Table meta data, name, schema
+@Table(
+  name: 'airports',
+)
 class AirportModel {
   final String name;
   final String iataCode;
@@ -8,7 +14,7 @@ class AirportModel {
   final String? city;
   final String? cityCode;
   final String? unLocode;
-  final String? tomezone;
+  final String? timezone;
   final String countryCode;
   final dynamic names;
   final int? departures;
@@ -31,7 +37,7 @@ class AirportModel {
     this.city,
     this.cityCode,
     this.unLocode,
-    this.tomezone,
+    this.timezone,
     required this.countryCode,
     this.names,
     this.departures,
@@ -55,7 +61,7 @@ class AirportModel {
         city: json['city'],
         cityCode: json['city_code'],
         unLocode: json['un_lucode'],
-        tomezone: json['timezone'],
+        timezone: json['timezone'],
         countryCode: json['country_code'],
         names: json['names'],
         departures: json['departures'],
@@ -80,7 +86,7 @@ class AirportModel {
     json['city'] = city;
     json['city_code'] = cityCode;
     json['un_lucode'] = unLocode;
-    json['timezone'] = tomezone;
+    json['timezone'] = timezone;
     json['country_code'] = countryCode;
     json['names'] = names;
     json['departures'] = departures;

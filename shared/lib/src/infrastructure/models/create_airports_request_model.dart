@@ -1,11 +1,5 @@
-import 'package:beyond/beyond.dart';
-
 import 'airlabs/airport_model.dart';
 
-/// Table meta data, name, schema
-@Table(
-  name: 'airport',
-)
 class CreateAirportsRequestModel {
   final List<AirportModel> airports;
 

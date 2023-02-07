@@ -21,11 +21,9 @@ class CreateAirports extends UseCase<Request, Response> {
     final requestBody = jsonDecode(
       await data.readAsString(),
     );
-    print(requestBody);
     final request = CreateAirportsRequestModel.fromJson(
       requestBody,
     );
-    print('here');
 
     final result = await DB<List<AirportModel>>(
       model: request.airports,
@@ -34,8 +32,7 @@ class CreateAirports extends UseCase<Request, Response> {
     return JsonResponse(
       200,
       body: {
-        'message': 'new success',
-        'result': result,
+        'message': '$result Airports data inserted successfully',
       },
     );
   }
