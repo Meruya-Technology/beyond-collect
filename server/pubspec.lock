@@ -39,10 +39,12 @@ packages:
   beyond:
     dependency: "direct main"
     description:
-      name: beyond
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.0.1"
+      path: beyond
+      ref: HEAD
+      resolved-ref: e72361a762e10a8ba8f8d65f0766237608272303
+      url: "https://github.com/Meruya-Techhnology/Beyond.git"
+    source: git
+    version: "0.0.2"
   boolean_selector:
     dependency: transitive
     description:
