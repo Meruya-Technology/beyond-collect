@@ -1,4 +1,6 @@
-import 'package:beyond/beyond.dart';
+import 'package:beyond/beyond.dart' hide DataUtil;
+
+import '../../../utils/data_util.dart';
 
 /// Table meta data, name, schema
 @Table(
@@ -6,8 +8,8 @@ import 'package:beyond/beyond.dart';
 )
 class AirportModel {
   final String name;
-  final String iataCode;
-  final String icaoCode;
+  final String? iataCode;
+  final String? icaoCode;
   final double lat;
   final double lng;
   final double? alt;
@@ -30,8 +32,8 @@ class AirportModel {
 
   AirportModel({
     required this.name,
-    required this.iataCode,
-    required this.icaoCode,
+    this.iataCode,
+    this.icaoCode,
     required this.lat,
     required this.lng,
     this.alt,
@@ -57,9 +59,15 @@ class AirportModel {
         name: json['name'],
         iataCode: json['iata_code'],
         icaoCode: json['icao_code'],
-        lat: json['lat'],
-        lng: json['lng'],
-        alt: json['alt'],
+        lat: DataUtil.mapNumberToDouble(
+          json['lat'],
+        ),
+        lng: DataUtil.mapNumberToDouble(
+          json['lng'],
+        ),
+        alt: DataUtil.mapNullableNumberToDouble(
+          json['alt'],
+        ),
         city: json['city'],
         cityCode: json['city_code'],
         unLocode: json['un_lucode'],

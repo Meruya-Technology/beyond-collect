@@ -7,8 +7,8 @@ class AirlineModel {
   final String name;
   final String? iataPrefix;
   final String? iataAccounting;
-  final String iataCode;
-  final String icaoCode;
+  final String? iataCode;
+  final String? icaoCode;
   final String? callsign;
   final String? countryCode;
   final int? iosaRegistered;
@@ -18,8 +18,13 @@ class AirlineModel {
   final int? isInternational;
   final int? totalAircrafts;
   final int? averageFleetAge;
+
+  @Field(field: 'accidents_last_5y')
   final int? accidentsLast5y;
+
+  @Field(field: 'crashes_last_5y')
   final int? crashesLast5y;
+
   final String? website;
   final String? facebook;
   final String? twitter;
@@ -31,8 +36,8 @@ class AirlineModel {
     required this.name,
     this.iataPrefix,
     this.iataAccounting,
-    required this.iataCode,
-    required this.icaoCode,
+    this.iataCode,
+    this.icaoCode,
     this.callsign,
     this.countryCode,
     //
