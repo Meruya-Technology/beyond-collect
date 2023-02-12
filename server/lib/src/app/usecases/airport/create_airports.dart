@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:beyond/beyond.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared/shared.dart';
 import 'package:shelf/shelf.dart';
 

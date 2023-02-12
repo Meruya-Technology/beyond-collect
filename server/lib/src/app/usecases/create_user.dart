@@ -4,6 +4,7 @@ import 'package:beyond/beyond.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shelf/shelf.dart';
 
+import '../../common/extended_env.dart';
 import '../../utils/postgresql.dart';
 import '../models/user.dart';
 
@@ -16,7 +17,7 @@ class CreateUser extends UseCase<Request, Response> {
 
   final database = Postgresql.credential;
 
-  static final _env = GetIt.instance<Env>();
+  static final _env = GetIt.instance<ExtendedEnv>();
 
   @override
   Future<Response> build(Request data) async {

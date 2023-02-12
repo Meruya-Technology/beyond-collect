@@ -1,19 +1,19 @@
 import 'request_model.dart';
 import 'airline_model.dart';
 
-class AirlineResponseModel {
+class AirlinesResponseModel {
   final RequestModel request;
   final List<AirlineModel> response;
   final String terms;
 
-  AirlineResponseModel({
+  AirlinesResponseModel({
     required this.request,
     required this.response,
     required this.terms,
   });
 
-  factory AirlineResponseModel.fromJson(Map<String, dynamic> json) =>
-      AirlineResponseModel(
+  factory AirlinesResponseModel.fromJson(Map<String, dynamic> json) =>
+      AirlinesResponseModel(
         request: RequestModel.fromJson(json),
         response: List<AirlineModel>.from(
           json['response'].map(

@@ -1,9 +1,10 @@
-import 'package:beyond/beyond.dart';
 import 'package:get_it/get_it.dart';
 import 'package:postgres/postgres.dart';
 
+import '../common/extended_env.dart';
+
 class Postgresql {
-  static final _env = GetIt.instance<Env>();
+  static final _env = GetIt.instance<ExtendedEnv>();
 
   static PostgreSQLConnection get credential => PostgreSQLConnection(
         _env.dbHost,

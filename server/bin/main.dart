@@ -1,5 +1,8 @@
 import 'package:beyond/beyond.dart';
+import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:server/src/common/extended_env.dart';
+import 'package:server/src/utils/dio_interceptor.dart';
 import 'package:shelf/shelf.dart';
 import 'package:shelf/shelf_io.dart';
 import 'package:shelf_hotreload/shelf_hotreload.dart';
@@ -14,7 +17,7 @@ void main(List<String> args) async {
   final getIt = GetIt.instance;
 
   /// Parse .env file into active env class
-  final env = Env.fromJson(
+  final env = ExtendedEnv.fromJson(
     await EnvUtil.readEnv(),
   );
 
@@ -23,6 +26,14 @@ void main(List<String> args) async {
 
   /// Initialize global error handler
   final errorHandler = CustomErrorHandler();
+
+  /// Initialize http client
+  final dioClient = Dio()
+    ..interceptors.add(
+      DioInterceptor(
+        logIsAllowed: true,
+      ),
+    );
 
   /// Initialize Api, and handlers
   final api = Api();
@@ -36,9 +47,11 @@ void main(List<String> args) async {
   /// Inject dependencies sequences :
   /// 1. Env
   /// 2. Error handler
-  getIt.registerSingleton<Env>(env);
+  getIt.registerSingleton<ExtendedEnv>(env);
 
   getIt.registerSingleton<CustomErrorHandler>(errorHandler);
+
+  getIt.registerSingleton<Dio>(dioClient);
 
   /// Open database connection
   final postgresql = await database.openConnection();
