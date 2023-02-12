@@ -1,10 +1,10 @@
 class ParamsModel {
-  final String iataCode;
-  final String lang;
+  final String? iataCode;
+  final String? lang;
 
   ParamsModel({
-    required this.iataCode,
-    required this.lang,
+    this.iataCode,
+    this.lang,
   });
 
   factory ParamsModel.fromJson(Map<String, dynamic> json) => ParamsModel(

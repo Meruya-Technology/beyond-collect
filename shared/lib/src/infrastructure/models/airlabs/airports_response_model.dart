@@ -17,7 +17,7 @@ class AirportsResponseModel {
         request: RequestModel.fromJson(json),
         response: List<AirportModel>.from(
           json['response'].map(
-            (json) => AirportModel.fromJson(json['response']),
+            (json) => AirportModel.fromJson(json),
           ),
         ),
         terms: json['terms'],

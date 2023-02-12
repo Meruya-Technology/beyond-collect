@@ -1,62 +1,80 @@
+import 'package:beyond/beyond.dart' hide DataUtil;
+import '../../../utils/data_util.dart';
+
+@Table(
+  name: 'flights',
+)
 class FlightModel {
-  final String hex;
-  final String regNumber;
-  final String flag;
-  final double lat;
-  final double lng;
-  final int alt;
-  final int dir;
-  final int speed;
-  final double vSpeed;
-  final String squawk;
-  final String flightNumber;
-  final String flightIcao;
-  final String flightIata;
-  final String depIcao;
-  final String depIata;
-  final String arrIcao;
-  final String arrIata;
-  final String airlineIcao;
-  final String airlineIata;
-  final String aircraftIcao;
-  final int updated;
-  final String status;
+  final String? hex;
+  final String? regNumber;
+  final String? flag;
+  final double? lat;
+  final double? lng;
+  final double? alt;
+  final double? dir;
+  final double? speed;
+  final double? vSpeed;
+  final String? squawk;
+  final String? flightNumber;
+  final String? flightIcao;
+  final String? flightIata;
+  final String? depIcao;
+  final String? depIata;
+  final String? arrIcao;
+  final String? arrIata;
+  final String? airlineIcao;
+  final String? airlineIata;
+  final String? aircraftIcao;
+  final int? updated;
+  final String? status;
 
   FlightModel({
-    required this.hex,
-    required this.regNumber,
-    required this.flag,
-    required this.lat,
-    required this.lng,
-    required this.alt,
-    required this.dir,
-    required this.speed,
-    required this.vSpeed,
-    required this.squawk,
-    required this.flightNumber,
-    required this.flightIcao,
-    required this.flightIata,
-    required this.depIcao,
-    required this.depIata,
-    required this.arrIcao,
-    required this.arrIata,
-    required this.airlineIcao,
-    required this.airlineIata,
-    required this.aircraftIcao,
-    required this.updated,
-    required this.status,
+    this.hex,
+    this.regNumber,
+    this.flag,
+    this.lat,
+    this.lng,
+    this.alt,
+    this.dir,
+    this.speed,
+    this.vSpeed,
+    this.squawk,
+    this.flightNumber,
+    this.flightIcao,
+    this.flightIata,
+    this.depIcao,
+    this.depIata,
+    this.arrIcao,
+    this.arrIata,
+    this.airlineIcao,
+    this.airlineIata,
+    this.aircraftIcao,
+    this.updated,
+    this.status,
   });
 
   factory FlightModel.fromJson(Map<String, dynamic> json) => FlightModel(
         hex: json['hex'],
         regNumber: json['reg_number'],
         flag: json['flag'],
-        lat: json['lat'],
-        lng: json['lng'],
-        alt: json['alt'],
-        dir: json['dir'],
-        speed: json['speed'],
-        vSpeed: json['v_speed'],
+        lat: DataUtil.mapNumberToDouble(
+          json['lat'],
+        ),
+        lng: DataUtil.mapNumberToDouble(
+          json['lng'],
+        ),
+        alt: DataUtil.mapNullableNumberToDouble(
+          json['alt'],
+        ),
+        dir: DataUtil.mapNullableNumberToDouble(
+          json['dir'],
+        ),
+        speed: DataUtil.mapNullableNumberToDouble(
+          json['speed'],
+        ),
+        vSpeed: DataUtil.mapNullableNumberToDouble(
+          json['v_speed'],
+        ),
         squawk: json['squawk'],
         flightNumber: json['flight_number'],
         flightIcao: json['flight_icao'],

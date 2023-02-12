@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:beyond/beyond.dart';
 import 'package:dio/dio.dart' hide Response;
 import 'package:get_it/get_it.dart';
@@ -26,6 +24,11 @@ class SyncFlights extends UseCase<Request, Response> {
   Future<Response> build(Request data) async {
     final flights = await dioClient.get(
       'https://airlabs.co/${Endpoint.retrieveFlights}',
+      options: Options(
+        headers: {
+          Headers.contentTypeHeader: Headers.formUrlEncodedContentType,
+        },
+      ),
       queryParameters: {
         'api_key': _env.airlabsApiKey,
       },
@@ -40,28 +43,27 @@ class SyncFlights extends UseCase<Request, Response> {
       );
     }
 
-    final response = FlightsResponseModel.fromJson(
-      jsonDecode(
-        flights.data,
-      ),
+    final flgihtsResponseModel = FlightsResponseModel.fromJson(
+      flights.data,
     );
 
-    // final requestBody = jsonDecode(
-    //   await data.readAsString(),
-    // );
-    // final request = CreateAirlinesRequestModel.fromJson(
-    //   requestBody,
-    // );
+    if (flgihtsResponseModel.response.isEmpty) {
+      return JsonResponse(
+        204,
+        body: {
+          'message': 'Proccess done without syncronize data',
+        },
+      );
+    }
 
-    // final result = await DB<List<AirlineModel>>(
-    //   model: request.airlines,
-    // ).create();
+    final result = await DB<List<FlightModel>>(
+      model: flgihtsResponseModel.response,
+    ).create();
 
     return JsonResponse(
       200,
       body: {
-        'message': 'Flight data synchronized',
-        'data': response.response,
+        'message': '$result flight data synchronized',
       },
     );
   }

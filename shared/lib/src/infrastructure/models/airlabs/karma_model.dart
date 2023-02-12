@@ -6,11 +6,11 @@ class KarmaModel {
   final bool isRegular;
 
   KarmaModel({
-    required this.isBlocked,
-    required this.isCrawler,
-    required this.isBot,
-    required this.isFriend,
-    required this.isRegular,
+    this.isBlocked = false,
+    this.isCrawler = false,
+    this.isBot = false,
+    this.isFriend = false,
+    this.isRegular = false,
   });
 
   factory KarmaModel.fromJson(Map<String, dynamic> json) => KarmaModel(

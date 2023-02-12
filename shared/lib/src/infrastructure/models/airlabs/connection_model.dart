@@ -1,12 +1,12 @@
 class ConnectionModel {
-  final String type;
-  final int ispCode;
-  final String ispName;
+  final String? type;
+  final int? ispCode;
+  final String? ispName;
 
   ConnectionModel({
-    required this.type,
-    required this.ispCode,
-    required this.ispName,
+    this.type,
+    this.ispCode,
+    this.ispName,
   });
 
   factory ConnectionModel.fromJson(Map<String, dynamic> json) =>
