@@ -43,11 +43,11 @@ class SyncFlights extends UseCase<Request, Response> {
       );
     }
 
-    final flgihtsResponseModel = FlightsResponseModel.fromJson(
+    final flightsResponseModel = FlightsResponseModel.fromJson(
       flights.data,
     );
 
-    if (flgihtsResponseModel.response.isEmpty) {
+    if (flightsResponseModel.response.isEmpty) {
       return JsonResponse(
         204,
         body: {
@@ -57,13 +57,18 @@ class SyncFlights extends UseCase<Request, Response> {
     }
 
     final result = await DB<List<FlightModel>>(
-      model: flgihtsResponseModel.response,
+      model: flightsResponseModel.response,
+    ).create();
+
+    final flightHistoryResult = await DB<FlightHistoryModel>(
+      model: FlightHistoryModel(rows: result),
     ).create();
 
     return JsonResponse(
       200,
       body: {
-        'message': '$result flight data synchronized',
+        'message':
+            '$result flight data synchronized & $flightHistoryResult history recorded',
       },
     );
   }
