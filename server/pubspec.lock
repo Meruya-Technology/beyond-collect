@@ -40,8 +40,8 @@ packages:
     dependency: "direct main"
     description:
       path: beyond
-      ref: bd20601936ec8d798662d6dfee8b1ebea020e2af
-      resolved-ref: bd20601936ec8d798662d6dfee8b1ebea020e2af
+      ref: "047663a58643594a98a7cf698178ec35b5739839"
+      resolved-ref: "047663a58643594a98a7cf698178ec35b5739839"
       url: "https://github.com/Meruya-Techhnology/Beyond.git"
     source: git
     version: "0.0.2"
