@@ -7,7 +7,6 @@ import 'package:shared/shared.dart';
 import 'package:shelf/shelf.dart';
 
 import '../../../common/extended_env.dart';
-import '../../../utils/postgresql.dart';
 
 class SyncFlights extends UseCase<Request, Response> {
   final ErrorHandler errorHandler;
@@ -19,7 +18,6 @@ class SyncFlights extends UseCase<Request, Response> {
   });
 
   static final _env = GetIt.instance<ExtendedEnv>();
-  final database = Postgresql.credential;
 
   @override
   Future<Response> build(Request data) async {

@@ -1,7 +1,8 @@
 import 'package:get_it/get_it.dart';
-import 'package:server/src/app/usecases/airport/create_airports.dart';
 import 'package:shelf/shelf.dart';
 
+import '../usecases/airport/create_airports.dart';
+import '../usecases/airport/retrieve_airports.dart';
 import '../../utils/custom_error_handler.dart';
 
 class AirportController {
@@ -9,6 +10,14 @@ class AirportController {
 
   static Future<Response> createAirports(Request req) async {
     final useCase = CreateAirports(
+      errorHandler: _errorHandler,
+    );
+
+    return await useCase.execute(req);
+  }
+
+  static Future<Response> retrieveAirports(Request req) async {
+    final useCase = RetrieveAirports(
       errorHandler: _errorHandler,
     );
 
