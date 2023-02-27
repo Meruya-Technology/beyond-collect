@@ -307,9 +307,11 @@ packages:
   shared:
     dependency: "direct main"
     description:
-      path: "../shared"
-      relative: true
-    source: path
+      path: shared
+      ref: HEAD
+      resolved-ref: "32a6063ac41746067f88984aa5b92f7a34c183dc"
+      url: "https://github.com/Meruya-Techhnology/beyond-collect.git"
+    source: git
     version: "1.0.0"
   shelf:
     dependency: "direct main"
