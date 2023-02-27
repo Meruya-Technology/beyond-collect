@@ -4,3 +4,4 @@ services:
     build: .
     ports:
       - "8080:8080"
+    entrypoint: "/bin/sh -c '/usr/lib/dart/bin/dart /server/bin/main.dill  --dart-define PORT=${PORT} --dart-define DB_SERVICE=${DB_SERVICE} --dart-define DB_HOST=${DB_HOST} --dart-define DB_PORT=${DB_PORT} --dart-define DB_NAME=${DB_NAME} --dart-define DB_USERNAME=${DB_USERNAME} --dart-define DB_PASSWORD=${DB_PASSWORD} --dart-define SECRET_KEY=${SECRET_KEY} --dart-define AIRLABS_API_KEY=${AIRLABS_API_KEY}'"

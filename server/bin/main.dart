@@ -16,6 +16,8 @@ void main(List<String> args) async {
   /// Dependency injector instance
   final getIt = GetIt.instance;
 
+  print(args);
+
   /// Parse .env file into active env class
   final env = ExtendedEnv.fromJson(
     await EnvUtil.readEnv(),
