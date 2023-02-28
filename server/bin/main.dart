@@ -1,3 +1,4 @@
+import 'package:args/args.dart';
 import 'package:beyond/beyond.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -16,7 +17,9 @@ void main(List<String> args) async {
   /// Dependency injector instance
   final getIt = GetIt.instance;
 
-  print(args);
+  final argumentParser = ArgParser();
+  final arguments = argumentParser.parse(args);
+  print(arguments);
 
   /// Parse .env file into active env class
   final env = ExtendedEnv.fromJson(
