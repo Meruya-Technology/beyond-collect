@@ -1,4 +1,5 @@
-import 'package:args/args.dart';
+import 'dart:io';
+
 import 'package:beyond/beyond.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -59,18 +60,26 @@ void main(List<String> args) async {
 
   DB.initialize(postgresql);
 
-  /// Serve handler
-  withHotreload(
-    () async {
-      final server = await serve(
-        http.handler,
-        env.ip,
-        env.port,
-        poweredByHeader: 'Beyond dart',
-      );
+  /// Run http server, without hot reload when `production` and with hot reload
+  /// when `development`
+  if (env.environment != 'PRODUCTION') {
+    await runServer(http, env);
+  } else {
+    /// If the build is not production, then run with hot reload
+    withHotreload(
+      () async => await runServer(http, env),
+    );
+  }
+}
 
-      print('Beyond server active, listening on port ${server.port}');
-      return server;
-    },
+Future<HttpServer> runServer(Http http, Env env) async {
+  final server = await serve(
+    http.handler,
+    env.ip,
+    env.port,
+    poweredByHeader: 'Beyond dart',
   );
+
+  print('Beyond server active, listening on port ${server.port}');
+  return server;
 }
