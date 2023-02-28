@@ -18,6 +18,7 @@ RUN dart compile kernel -o bin/main.dill bin/main.dart
 FROM subfuzion/dart-scratch
 COPY --from=0 /usr/lib/dart/bin/dart /usr/lib/dart/bin/dart
 COPY --from=0 /server/bin/main.dill /server/bin/main.dill
+COPY --from=0 /server/.env /server/.env
 
 # Start server.
 EXPOSE 8080
