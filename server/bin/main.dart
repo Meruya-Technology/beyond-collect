@@ -60,7 +60,6 @@ void main(List<String> args) async {
   DB.initialize(postgresql);
 
   /// Serve handler
-
   withHotreload(
     () async {
       final server = await serve(
