@@ -62,7 +62,7 @@ void main(List<String> args) async {
 
   /// Run http server, without hot reload when `production` and with hot reload
   /// when `development`
-  if (env.environment != 'PRODUCTION') {
+  if (env.environment == 'PRODUCTION') {
     await runServer(http, env);
   } else {
     /// If the build is not production, then run with hot reload
