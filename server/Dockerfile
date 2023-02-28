@@ -23,4 +23,5 @@ COPY --from=0 /server/pubspec.* /server/
 
 # Start server.
 EXPOSE 8080
+EXPOSE 5432
 ENTRYPOINT [ "/usr/lib/dart/bin/dart", "/server/bin/main.dill" ]
