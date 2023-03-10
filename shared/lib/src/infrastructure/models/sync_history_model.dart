@@ -1,27 +1,36 @@
 import 'package:beyond/beyond.dart';
 
 @Table(
-  name: 'flight_histories',
+  name: 'sync_histories',
 )
-class FlightHistoryModel {
+class SyncHistoryModel {
   @Field(isFillable: false)
   final int? id;
 
   @Field(isFillable: false)
   final String? createdAt;
   final int? rows;
+  final double? duration;
+  final double? size;
+  final String text;
 
-  FlightHistoryModel({
+  SyncHistoryModel({
     this.id,
     this.createdAt,
     required this.rows,
+    this.duration = 0.0,
+    this.size = 0.0,
+    required this.text,
   });
 
-  factory FlightHistoryModel.fromJson(Map<String, dynamic> json) =>
-      FlightHistoryModel(
+  factory SyncHistoryModel.fromJson(Map<String, dynamic> json) =>
+      SyncHistoryModel(
         id: json['id'],
         createdAt: json['created_at'],
         rows: json['rows'],
+        duration: json['duration'],
+        size: json['size'],
+        text: json['text'],
       );
 
   Map<String, dynamic> toJson() {
@@ -29,6 +38,9 @@ class FlightHistoryModel {
     json['id'] = id;
     json['created_at'] = createdAt;
     json['rows'] = rows;
+    json['duration'] = duration;
+    json['size'] = size;
+    json['text'] = text;
     return json;
   }
 }

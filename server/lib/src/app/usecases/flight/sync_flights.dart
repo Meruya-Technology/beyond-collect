@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:beyond/beyond.dart';
 import 'package:dio/dio.dart' hide Response;
 import 'package:get_it/get_it.dart';
@@ -42,6 +44,11 @@ class SyncFlights extends UseCase<Request, Response> {
       );
     }
 
+    /// Measure insert duration
+    final dataSize = utf8.encode(flights.data).length;
+    final stopwatch = Stopwatch();
+    stopwatch.start();
+
     final flightsResponseModel = FlightsResponseModel.fromJson(
       flights.data,
     );
@@ -59,9 +66,19 @@ class SyncFlights extends UseCase<Request, Response> {
       model: flightsResponseModel.response,
     ).create();
 
-    final flightHistoryResult = await DB<FlightHistoryModel>(
-      model: FlightHistoryModel(rows: result),
+    final flightHistoryResult = await DB<SyncHistoryModel>(
+      model: SyncHistoryModel(
+        rows: result,
+        duration: stopwatch.elapsedMilliseconds,
+        size: dataSize,
+        type: 'flights',
+      ),
     ).create();
+
+    /// Stop measure
+    if (stopwatch.isRunning) {
+      stopwatch.stop();
+    }
 
     return JsonResponse(
       200,
