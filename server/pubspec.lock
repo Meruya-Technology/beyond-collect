@@ -309,7 +309,7 @@ packages:
     description:
       path: shared
       ref: HEAD
-      resolved-ref: "32a6063ac41746067f88984aa5b92f7a34c183dc"
+      resolved-ref: "5da1f37fe2fff41f853890ff91a3a441c5f8776a"
       url: "https://github.com/Meruya-Techhnology/beyond-collect.git"
     source: git
     version: "1.0.0"

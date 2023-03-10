@@ -12,7 +12,7 @@ class SyncHistoryModel {
   final int? rows;
   final double? duration;
   final double? size;
-  final String text;
+  final String type;
 
   SyncHistoryModel({
     this.id,
@@ -20,7 +20,7 @@ class SyncHistoryModel {
     required this.rows,
     this.duration = 0.0,
     this.size = 0.0,
-    required this.text,
+    required this.type,
   });
 
   factory SyncHistoryModel.fromJson(Map<String, dynamic> json) =>
@@ -30,7 +30,7 @@ class SyncHistoryModel {
         rows: json['rows'],
         duration: json['duration'],
         size: json['size'],
-        text: json['text'],
+        type: json['type'],
       );
 
   Map<String, dynamic> toJson() {
@@ -40,7 +40,7 @@ class SyncHistoryModel {
     json['rows'] = rows;
     json['duration'] = duration;
     json['size'] = size;
-    json['text'] = text;
+    json['type'] = type;
     return json;
   }
 }
