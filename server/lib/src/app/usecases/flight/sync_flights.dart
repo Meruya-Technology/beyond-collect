@@ -45,13 +45,14 @@ class SyncFlights extends UseCase<Request, Response> {
     }
 
     /// Measure insert duration
-    final dataSize = utf8.encode(flights.data).length;
     final stopwatch = Stopwatch();
     stopwatch.start();
 
     final flightsResponseModel = FlightsResponseModel.fromJson(
       flights.data,
     );
+
+    final dataSize = utf8.encode(jsonEncode(flights.data)).length;
 
     if (flightsResponseModel.response.isEmpty) {
       return JsonResponse(
