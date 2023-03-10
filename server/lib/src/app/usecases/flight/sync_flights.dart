@@ -69,8 +69,8 @@ class SyncFlights extends UseCase<Request, Response> {
     final flightHistoryResult = await DB<SyncHistoryModel>(
       model: SyncHistoryModel(
         rows: result,
-        duration: stopwatch.elapsedMilliseconds,
-        size: dataSize,
+        duration: stopwatch.elapsedMilliseconds.toDouble(),
+        size: dataSize.toDouble(),
         type: 'flights',
       ),
     ).create();

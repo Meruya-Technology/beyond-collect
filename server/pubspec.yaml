@@ -27,6 +27,7 @@ dependencies:
     git:
       url: https://github.com/Meruya-Techhnology/beyond-collect.git
       path: shared
+      ref: 5c47d8fb8ad2d2a43e6548b51b22556cc5cdcb8b
 
 dev_dependencies:
   http: ^0.13.0
