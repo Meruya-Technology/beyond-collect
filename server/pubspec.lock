@@ -308,8 +308,8 @@ packages:
     dependency: "direct main"
     description:
       path: shared
-      ref: "5c47d8fb8ad2d2a43e6548b51b22556cc5cdcb8b"
-      resolved-ref: "5c47d8fb8ad2d2a43e6548b51b22556cc5cdcb8b"
+      ref: b0a7787cee5ab6c8de8b44365d3ff43d831c6ea2
+      resolved-ref: b0a7787cee5ab6c8de8b44365d3ff43d831c6ea2
       url: "https://github.com/Meruya-Techhnology/beyond-collect.git"
     source: git
     version: "1.0.0"
