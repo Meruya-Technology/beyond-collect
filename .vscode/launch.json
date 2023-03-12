@@ -11,5 +11,12 @@
             "type": "dart",
             "program": "bin/main.dart",
         },
+        {
+            "name": "Client [Staging]",
+            "cwd": "client",
+            "request": "launch",
+            "type": "dart",
+            "program": "bin/main.dart",
+        },
     ]
 }
