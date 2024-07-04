@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:beyond/beyond.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
+import 'package:grpc/grpc.dart' as grpc;
+import 'package:server/src/app/protos/generated/helloworld.pbgrpc.dart';
 import 'package:server/src/common/extended_env.dart';
 import 'package:server/src/utils/dio_interceptor.dart';
 import 'package:shelf/shelf.dart';
@@ -81,5 +83,40 @@ Future<HttpServer> runServer(Http http, Env env) async {
   );
 
   print('Beyond server active, listening on port ${server.port}');
+  runRpcServer();
   return server;
+}
+
+Future<void> runRpcServer() async {
+  final server = grpc.Server.create(
+    services: [GreeterService()],
+    codecRegistry: grpc.CodecRegistry(
+      codecs: const [
+        grpc.GzipCodec(),
+        grpc.IdentityCodec(),
+      ],
+    ),
+  );
+  await server.serve(
+    port: 50051,
+  );
+  print('Beyond server active, listening on port 50051');
+}
+
+class GreeterService extends GreeterServiceBase {
+  @override
+  Future<HelloReply> sayHello(
+    grpc.ServiceCall call,
+    HelloRequest request,
+  ) async {
+    return HelloReply()..message = 'Hello, ${request.name}!';
+  }
+
+  @override
+  Future<HelloReply> sayHelloAgain(
+    grpc.ServiceCall call,
+    HelloRequest request,
+  ) async {
+    return HelloReply()..message = 'Hello again, ${request.name}!';
+  }
 }
